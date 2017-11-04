@@ -1,0 +1,28 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Symbol</th>
+        <th>Last Price</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let stock of stocks">
+        <td>{{stock.name}}</td>
+        <td>{{stock.lastPrice | currency:'USD':true}}</td>
+        <td [ngClass]="{'text-success': stock.change > 0, 'text-danger': stock.change < 0}">
+          {{stock.change | currency:'USD': true}}
+        </td>
+        <td [ngClass]="{'text-success': stock.percentageChange > 0, 'text-danger': stock.percentageChange < 0}">
+          {{stock.percentageChange}}%</td>
+        <td>
+          <a class="btn btn-success">BUY</a>
+          <a class="btn btn-danger">SELL</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

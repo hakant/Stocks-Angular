@@ -7,8 +7,8 @@ describe('stocks-angular App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
+  it('should display correcy brand', () => {
     page.navigateTo();
-    expect(page.getParagraphText()).toEqual('Welcome to app!');
+    expect(page.getBrandText()).toEqual('Stocks');
   });
 });

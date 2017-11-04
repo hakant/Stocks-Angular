@@ -1,0 +1,17 @@
+{
+    "AAPL": {
+        "lastPrice": 250,
+        "change": 0.708,
+        "percentageChange": 2.08
+    },
+    "MSFT": {
+        "lastPrice": 270,
+        "change": -0.308,
+        "percentageChange": -1.08
+    },
+    "AMZN": {
+        "lastPrice": 210,
+        "change": 2.921,
+        "percentageChange": 2.73
+    }
+}
