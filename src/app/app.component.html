@@ -1,73 +1,36 @@
+ 
+ <app-navbar></app-navbar>
  <div class="container">
-  <h2>Contextual Classes</h2>
-  <p>Contextual classes can be used to color table rows or table cells. The classes that can be used are: .active, .success, .info, .warning, and .danger.</p>
-  <ngb-tabset>
-    <ngb-tab title="Simple">
-      <ng-template ngbTabContent>
-        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-        dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-        iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab>
-      <ng-template ngbTabTitle><b>Fancy</b> title</ng-template>
-      <ng-template ngbTabContent>Food truck fixie locavore, accusamus mcsweeney's marfa nulla single-origin coffee squid.
-        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko farm-to-table
-        craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts ullamco ad vinyl
-        cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar helvetica VHS salvia
-        yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson 8-bit, sustainable jean
-        shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester stumptown, tumblr butcher vero
-        sint qui sapiente accusamus tattooed echo park.</p>
-      </ng-template>
-    </ngb-tab>
-    <ngb-tab title="Disabled" [disabled]="true">
-      <ng-template ngbTabContent>
-        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-        master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro keffiyeh
-        dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat salvia cillum
-        iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-      </ng-template>
-    </ngb-tab>
-  </ngb-tabset>
   <table class="table">
     <thead>
       <tr>
-        <th>Firstname</th>
-        <th>Lastname</th>
-        <th>Email</th>
+        <th>Symbol</th>
+        <th>Last Price</th>
+        <th>Change</th>
+        <th>% Change</th>
+        <th>Actions</th>
       </tr>
     </thead>
     <tbody>
       <tr>
-        <td>Default</td>
-        <td>Defaultson</td>
-        <td>def@somemail.com</td>
-      </tr>      
-      <tr class="success">
-        <td>Success</td>
-        <td>Doe</td>
-        <td>john@example.com</td>
+        <td>MSFT</td>
+        <td>250.00 $</td>
+        <td class="text-danger">-0,308</td>
+        <td class="text-danger">-1.08%</td>
+        <td>
+          <a class="btn btn-success">BUY</a>
+          <a class="btn btn-danger">SELL</a>
+        </td>
       </tr>
-      <tr class="danger">
-        <td>Danger</td>
-        <td>Moe</td>
-        <td>mary@example.com</td>
-      </tr>
-      <tr class="info">
-        <td>Info</td>
-        <td>Dooley</td>
-        <td>july@example.com</td>
-      </tr>
-      <tr class="warning">
-        <td>Warning</td>
-        <td>Refs</td>
-        <td>bo@example.com</td>
-      </tr>
-      <tr class="active">
-        <td>Active</td>
-        <td>Activeson</td>
-        <td>act@example.com</td>
+      <tr>
+        <td>APPL</td>
+        <td>270.00 $</td>
+        <td class="text-success">+0,708</td>
+        <td class="text-success">+2.08%</td>
+        <td>
+            <a class="btn btn-success">BUY</a>
+            <a class="btn btn-danger">SELL</a>
+        </td>
       </tr>
     </tbody>
   </table>
