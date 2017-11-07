@@ -27,16 +27,9 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.stopUpdating();
   }
 
-  // startUpdating() {
-  //   this.interval = setInterval(() => {
-  //     this.stocksService.requestAllStocks().subscribe(
-  //       data => {
-  //         this.stocks = data;
-  //       });
-  //   }, 1000);
-  // }
-
   startUpdating() {
+    // @hakant: Technique to fix the timeout issue with Protractor
+    // https://christianliebel.com/2016/11/angular-2-protractor-timeout-heres-fix/
       this.ngZone.runOutsideAngular(() => {
         this.interval = setInterval(() => {
           this.ngZone.run(() => {
