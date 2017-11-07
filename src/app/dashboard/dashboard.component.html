@@ -9,7 +9,7 @@
         <th>Actions</th>
       </tr>
     </thead>
-    <tbody>
+    <tbody *ngIf="stocks !== null">
       <tr *ngFor="let stock of stocks">
         <td>{{stock.name}}</td>
         <td>{{stock.lastPrice | currency:'USD':true}}</td>
@@ -19,10 +19,54 @@
         <td [ngClass]="{'text-success': stock.percentageChange > 0, 'text-danger': stock.percentageChange < 0}">
           {{stock.percentageChange}}%</td>
         <td>
-          <a class="btn btn-success">BUY</a>
-          <a class="btn btn-danger">SELL</a>
+          <a class="btn btn-success" (click)="stopUpdating(); buyModal.show({stockName: stock.name, stockPrice: stock.lastPrice})">BUY</a>
+          <a class="btn btn-danger" (click)="stopUpdating(); sellModal.show({stockName: stock.name, stockPrice: stock.lastPrice})">SELL</a>
         </td>
       </tr>
     </tbody>
   </table>
+  <div class="row" *ngIf="stocks === null">
+    <div class="col-md-9 col-md-offset-3" style="margin-bottom: 20px;">
+      <span class="lead">Getting things ready in just a few seconds...</span>
+    </div>
+    <div class="col-md-7 col-md-offset-5">
+      <div class="loader"></div>
+    </div>
+  </div>
 </div>
+
+<app-modal #buyModal>
+  <div class="app-modal-header">
+    Buy
+    <strong>{{buyModal.stock?.stockName}}</strong> Stocks
+  </div>
+  <div class="app-modal-body">
+    <form>
+      <div class="form-group">
+        <label for="recipient-name" class="form-control-label">Unit Price:</label>
+        <span>{{buyModal.stock?.stockPrice | currency:'USD': true}}</span>
+      </div>
+      <div class="form-group">
+        <label for="message-text" class="form-control-label"># of Units to Purchase:</label>
+        <input type="text" class="form-control" />
+      </div>
+    </form>
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="cancel(buyModal)">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="buy(buyModal);">Buy</button>
+  </div>
+</app-modal>
+
+<app-modal #sellModal>
+  <div class="app-modal-header">
+    Sell {{sellModal.stock?.stockName}} Stocks
+  </div>
+  <div class="app-modal-body">
+    Under Construction...
+  </div>
+  <div class="app-modal-footer">
+    <button type="button" class="btn btn-default" (click)="cancel(sellModal)">Cancel</button>
+    <button type="button" class="btn btn-primary" (click)="sell(sellModal);">Sell</button>
+  </div>
+</app-modal>

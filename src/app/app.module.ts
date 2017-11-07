@@ -14,6 +14,7 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { StocksService } from './services/stocks.service';
+import { ModalComponent } from './shared/modal.component';
 
 
 @NgModule({
@@ -21,7 +22,8 @@ import { StocksService } from './services/stocks.service';
     AppComponent,
     NavbarComponent,
     DashboardComponent,
-    IntroductionComponent
+    IntroductionComponent,
+    ModalComponent
   ],
   imports: [
     BrowserModule,

@@ -1,10 +1,18 @@
 import { TestBed, async } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
+import { RouterModule } from '@angular/router';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { APP_BASE_HREF } from '@angular/common';
+
 
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 
+import { appRoutes } from './routes';
+
+import { IntroductionComponent } from './introduction/introduction.component';
+import { ModalComponent } from './shared/modal.component';
 import { StocksService } from './services/stocks.service';
 
 describe('AppComponent', () => {
@@ -13,12 +21,20 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         NavbarComponent,
-        DashboardComponent
+        DashboardComponent,
+        IntroductionComponent,
+        ModalComponent
       ],
       imports: [
-        HttpClientModule
+        FormsModule,
+        ReactiveFormsModule,
+        HttpClientModule,
+        RouterModule.forRoot(appRoutes)
       ],
-      providers: [StocksService]
+      providers: [
+        StocksService,
+        { provide: APP_BASE_HREF, useValue: '/' }
+      ]
     }).compileComponents();
   }));
 
