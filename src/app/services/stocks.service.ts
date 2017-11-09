@@ -17,11 +17,12 @@ export class StocksService {
     }
     return this.http.get<AllStocksResponse>(url).map((response) => {
       const stocks: StockInfo[] = [];
-      for (const stockName in response) {
-        if (response.hasOwnProperty(stockName)) {
+      const stockResponse = response.stocks;
+      for (const stockName in stockResponse) {
+        if (stockResponse.hasOwnProperty(stockName)) {
           stocks.push({
             name: stockName,
-            ...response[stockName]
+            ...stockResponse[stockName]
           });
         }
       }
@@ -31,6 +32,8 @@ export class StocksService {
 }
 
 interface AllStocksResponse {
+  nlv: number;
+  cash: number;
   stocks: {
     [name: string]: {
       lastPrice: number;

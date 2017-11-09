@@ -1,17 +1,21 @@
 {
-    "AAPL": {
-        "lastPrice": 252,
-        "change": -0.608,
-        "percentageChange": -1.08
-    },
-    "MSFT": {
-        "lastPrice": 290,
-        "change": 0.608,
-        "percentageChange": 2.58
-    },
-    "AMZN": {
-        "lastPrice": 212,
-        "change": 3.921,
-        "percentageChange": 5.73
+    "nlv": 12000,
+    "cash": 3000,
+    "stocks": {
+        "AAPL": {
+            "lastPrice": 250,
+            "change": 0.708,
+            "percentageChange": 2.08
+        },
+        "MSFT": {
+            "lastPrice": 270,
+            "change": -0.308,
+            "percentageChange": -1.08
+        },
+        "AMZN": {
+            "lastPrice": 210,
+            "change": 2.921,
+            "percentageChange": 2.73
+        }
     }
 }

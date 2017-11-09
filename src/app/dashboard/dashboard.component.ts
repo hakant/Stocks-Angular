@@ -17,10 +17,6 @@ export class DashboardComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.startUpdating();
-    // this.stocksService.requestAllStocks().subscribe(
-    // data => {
-    //   this.stocks = data;
-    // });
   }
 
   ngOnDestroy() {
@@ -38,7 +34,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
                 this.stocks = data;
               });
           });
-      }, 1000);
+      }, 5000);
     });
   }
 
