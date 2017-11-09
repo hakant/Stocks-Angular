@@ -1,23 +1,29 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+
 import { Observable } from 'rxjs/Observable';
+import { Subject } from 'rxjs/Subject';
 import 'rxjs/add/operator/map';
 
+import { DashboardState } from '../models/dashboard-state';
 import { StockInfo } from '../models/stock-info';
 
 @Injectable()
 export class StocksService {
 
+  private state = new Subject<DashboardState>();
+  stateObservable = this.state.asObservable();
+
   constructor(private http: HttpClient) { }
 
-  public requestAllStocks(): Observable<Array<StockInfo>> {
+  public requestAllStocks(): void {
     let url = '/api/stocks.json';
     if (Math.random() > 0.5) {
       url = '/api/stocks2.json';
     }
-    return this.http.get<AllStocksResponse>(url).map((response) => {
-      const stocks: StockInfo[] = [];
+    this.http.get<AllStocksResponse>(url).map((response) => {
       const stockResponse = response.stocks;
+      const stocks: StockInfo[] = [];
       for (const stockName in stockResponse) {
         if (stockResponse.hasOwnProperty(stockName)) {
           stocks.push({
@@ -26,8 +32,12 @@ export class StocksService {
           });
         }
       }
-      return stocks;
-    });
+      this.state.next({
+        NetLiquidationValue: response.nlv,
+        CashValue: response.cash,
+        Stocks: stocks
+      });
+    }).subscribe();
   }
 }
 

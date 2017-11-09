@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, NgZone } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
 
 import { StocksService } from '../services/stocks.service';
 import { StockInfo } from '../models/stock-info';
@@ -12,15 +13,20 @@ export class DashboardComponent implements OnInit, OnDestroy {
   stocks: Array<StockInfo> = null;
   interval: any;
   closeResult: string;
+  subscription: Subscription;
 
   constructor(private stocksService: StocksService, private ngZone: NgZone) { }
 
   ngOnInit() {
+    this.subscription = this.stocksService.stateObservable.subscribe((state) => {
+      this.stocks = state.Stocks;
+    });
     this.startUpdating();
   }
 
   ngOnDestroy() {
     this.stopUpdating();
+    this.subscription.unsubscribe();
   }
 
   startUpdating() {
@@ -29,10 +35,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
       this.ngZone.runOutsideAngular(() => {
         this.interval = setInterval(() => {
           this.ngZone.run(() => {
-            this.stocksService.requestAllStocks().subscribe(
-              data => {
-                this.stocks = data;
-              });
+            this.stocksService.requestAllStocks();
           });
       }, 5000);
     });

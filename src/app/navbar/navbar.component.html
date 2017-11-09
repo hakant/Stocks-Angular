@@ -15,10 +15,10 @@
       <div class="navbar-header navbar-right">
         <ul class="nav navbar-nav">
           <li>
-            <a>Net Liquidation Value: 12.000 $</a>
+            <a>Net Liquidation Value: {{netLiquidationValue | currency:'USD': true}}</a>
           </li>
           <li>
-            <a>Cash: 3.000 $</a>
+            <a>Cash: {{cash | currency:'USD': true}}</a>  
           </li>
         </ul>
       </div>
