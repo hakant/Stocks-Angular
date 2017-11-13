@@ -16,11 +16,13 @@ export class StocksService {
 
   constructor(private http: HttpClient) { }
 
+  public loadStocks(numberOfStocks: number): Observable<any> {
+    const url = 'http://localhost:5000/api/start';
+    return this.http.post(url, { numberOfStocks: numberOfStocks });
+  }
+
   public requestAllStocks(): void {
-    let url = '/api/stocks.json';
-    if (Math.random() > 0.5) {
-      url = '/api/stocks2.json';
-    }
+    const url = 'http://localhost:5000/api/stocks';
     this.http.get<AllStocksResponse>(url).map((response) => {
       const stockResponse = response.stocks;
       const stocks: StockInfo[] = [];
@@ -33,7 +35,7 @@ export class StocksService {
         }
       }
       this.state.next({
-        NetLiquidationValue: response.nlv,
+        NetLiquidationValue: response.netLiquidationValue,
         CashValue: response.cash,
         Stocks: stocks
       });
@@ -42,7 +44,7 @@ export class StocksService {
 }
 
 interface AllStocksResponse {
-  nlv: number;
+  netLiquidationValue: number;
   cash: number;
   stocks: {
     [name: string]: {
