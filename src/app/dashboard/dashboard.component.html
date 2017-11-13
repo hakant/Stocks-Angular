@@ -41,20 +41,27 @@
     <strong>{{buyModal.stock?.stockName}}</strong> Stocks
   </div>
   <div class="app-modal-body">
-    <form>
+    <form #buyForm="ngForm" (ngSubmit)=buy(buyForm.value,buyModal) autocomplete="off" novalidate>
       <div class="form-group">
         <label for="recipient-name" class="form-control-label">Unit Price:</label>
         <span>{{buyModal.stock?.stockPrice | currency:'USD': true}}</span>
       </div>
-      <div class="form-group">
+      <div class="form-group" [ngClass]="{'has-error': buyForm.controls.numberOfStocks?.invalid && (buyForm.controls.numberOfStocks?.touched)}">
         <label for="message-text" class="form-control-label"># of Units to Purchase:</label>
-        <input type="text" class="form-control" />
+        <input id="numberOfStocks" (ngModel)="numberOfStocks" name="numberOfStocks" 
+          type="text" class="form-control" required/>
       </div>
+      <div *ngIf="buyForm.controls.numberOfStocks?.invalid && 
+      (buyForm.controls.numberOfStocks?.touched)" class="alert alert-danger margin-base-vertical">
+        Please specify the number of stocks you want to buy
+      </div>
+      <button type="button" class="btn btn-default" (click)="cancel(buyModal)">Cancel</button>
+      <button type="submit" [disabled]="buyForm.invalid" class="btn btn-primary">Buy</button>
     </form>
   </div>
   <div class="app-modal-footer">
-    <button type="button" class="btn btn-default" (click)="cancel(buyModal)">Cancel</button>
-    <button type="button" class="btn btn-primary" (click)="buy(buyModal);">Buy</button>
+    <!-- <button type="button" class="btn btn-default" (click)="cancel(buyModal)">Cancel</button>
+    <button type="submit" [disabled]="buyForm.invalid" class="btn btn-primary">Buy</button> -->
   </div>
 </app-modal>
 

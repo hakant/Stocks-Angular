@@ -52,7 +52,8 @@ export class DashboardComponent implements OnInit, OnDestroy {
     this.startUpdating();
   }
 
-  buy(modal: any) {
+  buy(formValues: any, modal: any) {
+    console.log('Buying this many: ' + formValues.numberOfStocks);
     modal.hide();
     this.startUpdating();
   }
