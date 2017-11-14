@@ -41,6 +41,11 @@ export class StocksService {
       });
     }).subscribe();
   }
+
+  public buyStock(numberOfStocks: number, stockName: string): Observable<any> {
+    const url = 'http://localhost:5000/api/stocks';
+    return this.http.post(url, { StockName: stockName, Units: numberOfStocks });
+  }
 }
 
 interface AllStocksResponse {

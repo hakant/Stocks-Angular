@@ -53,8 +53,16 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   buy(formValues: any, modal: any) {
-    console.log('Buying this many: ' + formValues.numberOfStocks);
-    modal.hide();
+    this.stocksService
+      .buyStock(formValues.numberOfStocks, modal.stock.stockName)
+      .subscribe(data => {
+        modal.hide();
+      },
+      err => {
+        modal.hide();
+        // @hakant: Fix this issue.
+        // console.log('Something went wrong!');
+      });
     this.startUpdating();
   }
 

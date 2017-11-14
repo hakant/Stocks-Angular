@@ -6,6 +6,7 @@
         <th>Last Price</th>
         <th>Change</th>
         <th>% Change</th>
+        <th>Position</th>
         <th>Actions</th>
       </tr>
     </thead>
@@ -18,6 +19,7 @@
         </td>
         <td [ngClass]="{'text-success': stock.percentageChange > 0, 'text-danger': stock.percentageChange < 0}">
           {{stock.percentageChange}}%</td>
+        <td>{{(stock.position == 0) ? '-' : stock.position}}</td>
         <td>
           <a class="btn btn-success" (click)="stopUpdating(); buyModal.show({stockName: stock.name, stockPrice: stock.lastPrice})">BUY</a>
           <a class="btn btn-danger" (click)="stopUpdating(); sellModal.show({stockName: stock.name, stockPrice: stock.lastPrice})">SELL</a>
@@ -47,9 +49,9 @@
         <span>{{buyModal.stock?.stockPrice | currency:'USD': true}}</span>
       </div>
       <div class="form-group" [ngClass]="{'has-error': buyForm.controls.numberOfStocks?.invalid && (buyForm.controls.numberOfStocks?.touched)}">
-        <label for="message-text" class="form-control-label"># of Units to Purchase:</label>
+        <label for="message-text" class="form-control-label"># of Units to Purchase:</label>        
         <input id="numberOfStocks" (ngModel)="numberOfStocks" name="numberOfStocks" 
-          type="text" class="form-control" required/>
+          type="text" class="form-control" required />
       </div>
       <div *ngIf="buyForm.controls.numberOfStocks?.invalid && 
       (buyForm.controls.numberOfStocks?.touched)" class="alert alert-danger margin-base-vertical">

@@ -24,7 +24,7 @@ import { Component } from '@angular/core';
 export class ModalComponent {
   public visible = false;
   public visibleAnimate = false;
-  public stock: StockTransactionInfo = {stockName: 'test', stockPrice: 12};
+  public stock: StockTransactionInfo;
 
   constructor() {
 
