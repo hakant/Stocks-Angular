@@ -7,6 +7,7 @@ import 'rxjs/add/operator/map';
 
 import { DashboardState } from '../models/dashboard-state';
 import { StockInfo } from '../models/stock-info';
+import { TransactionInfo } from '../models/transaction-info';
 
 @Injectable()
 export class StocksService {
@@ -46,6 +47,23 @@ export class StocksService {
     const url = 'http://localhost:5000/api/stocks';
     return this.http.post(url, { StockName: stockName, Units: numberOfStocks });
   }
+
+  public requestAllTransactions(): Observable<TransactionInfo[]> {
+    const url = 'http://localhost:5000/api/transactions';
+    return this.http.get<AllTransactionsResponse>(url).map((response) => {
+      const transactionsResponse = response.transactions;
+      const transactions: TransactionInfo[] = [];
+      for (const transactionId in transactionsResponse) {
+        if (transactionsResponse.hasOwnProperty(transactionId)) {
+          transactions.push({
+            id: transactionId,
+            ...transactionsResponse[transactionId]
+          });
+        }
+      }
+      return transactions;
+    });
+  }
 }
 
 interface AllStocksResponse {
@@ -56,6 +74,16 @@ interface AllStocksResponse {
       lastPrice: number;
       change: number;
       percentageChange: number;
+    }
+  };
+}
+
+interface AllTransactionsResponse {
+  transactions: {
+    [id: string]: {
+      date: Date;
+      price: number;
+      units: number;
     }
   };
 }

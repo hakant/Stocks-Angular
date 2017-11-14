@@ -1,0 +1,26 @@
+<div class="container">
+  <table class="table">
+    <thead>
+      <tr>
+        <th>Transaction Date</th>
+        <th>Purchase Price</th>
+        <th>Units Purchased</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="transactions !== null">
+      <tr *ngFor="let transaction of transactions">
+        <td>{{transaction.date | date:'yyyy-MM-dd &nbsp;&nbsp; HH:mm'}}</td>
+        <td>{{transaction.price | currency:'USD':true}}</td>
+        <td>{{transaction.units}}</td>
+      </tr>
+    </tbody>
+  </table>
+  <div class="row" *ngIf="transactions === null">
+    <div class="col-md-9 col-md-offset-3" style="margin-bottom: 20px;">
+      <span class="lead">Loading transaction history...</span>
+    </div>
+    <div class="col-md-7 col-md-offset-5">
+      <div class="loader"></div>
+    </div>
+  </div>
+</div>
