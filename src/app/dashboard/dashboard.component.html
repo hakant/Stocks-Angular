@@ -18,8 +18,8 @@
           {{stock.change | currency:'USD': true}}
         </td>
         <td [ngClass]="{'text-success': stock.percentageChange > 0, 'text-danger': stock.percentageChange < 0}">
-          {{stock.percentageChange}}%</td>
-        <td>{{(stock.position == 0) ? '-' : stock.position}}</td>
+          {{stock.percentageChange | number: '1.4-4'}}%</td>
+        <td>{{(stock.position == 0) ? '-' : stock.position  | number: '1.0-4'}}</td>
         <td>
           <a class="btn btn-success" (click)="stopUpdating(); buyModal.show({stockName: stock.name, stockPrice: stock.lastPrice})">BUY</a>
           <a class="btn btn-danger" (click)="stopUpdating(); sellModal.show({stockName: stock.name, stockPrice: stock.lastPrice})">SELL</a>
@@ -43,7 +43,7 @@
     <strong>{{buyModal.stock?.stockName}}</strong> Stocks
   </div>
   <div class="app-modal-body">
-    <form #buyForm="ngForm" (ngSubmit)=buy(buyForm.value,buyModal) autocomplete="off" novalidate>
+    <form #buyForm="ngForm" (ngSubmit)=buy(buyForm,buyModal) autocomplete="off" novalidate>
       <div class="form-group">
         <label for="recipient-name" class="form-control-label">Unit Price:</label>
         <span>{{buyModal.stock?.stockPrice | currency:'USD': true}}</span>
@@ -51,13 +51,13 @@
       <div class="form-group" [ngClass]="{'has-error': buyForm.controls.numberOfStocks?.invalid && (buyForm.controls.numberOfStocks?.touched)}">
         <label for="message-text" class="form-control-label"># of Units to Purchase:</label>        
         <input id="numberOfStocks" (ngModel)="numberOfStocks" name="numberOfStocks" 
-          type="text" class="form-control" required />
+          type="number" class="form-control" required min="0" max="1000" step="5" />
       </div>
       <div *ngIf="buyForm.controls.numberOfStocks?.invalid && 
       (buyForm.controls.numberOfStocks?.touched)" class="alert alert-danger margin-base-vertical">
         Please specify the number of stocks you want to buy
       </div>
-      <button type="button" class="btn btn-default" (click)="cancel(buyModal)">Cancel</button>
+      <button type="button" class="btn btn-default" (click)="cancel(buyForm, buyModal)">Cancel</button>
       <button type="submit" [disabled]="buyForm.invalid" class="btn btn-primary">Buy</button>
     </form>
   </div>

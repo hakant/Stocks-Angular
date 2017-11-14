@@ -37,7 +37,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
           this.ngZone.run(() => {
             this.stocksService.requestAllStocks();
           });
-      }, 5000);
+      }, 1000);
     });
   }
 
@@ -47,7 +47,11 @@ export class DashboardComponent implements OnInit, OnDestroy {
     }
   }
 
-  cancel(modal: any) {
+  cancel(buyForm: any, modal: any) {
+    // @hakant: clear the input box
+    // console.log(buyForm.controls.numberOfStocks);
+    // buyForm.controls.numberOfStocks._value = null;
+    // buyForm.controls.numberOfStocks._touched = false;
     modal.hide();
     this.startUpdating();
   }
