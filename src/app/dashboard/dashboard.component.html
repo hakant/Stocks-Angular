@@ -43,7 +43,7 @@
     <strong>{{buyModal.stock?.stockName}}</strong> Stocks
   </div>
   <div class="app-modal-body">
-    <form #buyForm="ngForm" (ngSubmit)=buy(buyForm,buyModal) autocomplete="off" novalidate>
+    <form #buyForm="ngForm" (ngSubmit)=buy(buyForm.value,buyModal) autocomplete="off" novalidate> 
       <div class="form-group">
         <label for="recipient-name" class="form-control-label">Unit Price:</label>
         <span>{{buyModal.stock?.stockPrice | currency:'USD': true}}</span>
