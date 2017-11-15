@@ -1,6 +1,10 @@
 # StocksAngular
 
+CD Pipeline described here:
+https://medium.com/@hakant/continuous-deployment-with-angular-cli-docker-travis-ci-and-azure-812e906a4974
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.3.0.
+
 
 ## Development server
 
