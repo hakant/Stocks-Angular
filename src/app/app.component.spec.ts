@@ -11,6 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { appRoutes } from './routes';
 
+import { TransactionComponent } from './transactions/transaction/transaction.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { ModalComponent } from './shared/modal.component';
 import { StocksService } from './services/stocks.service';
@@ -23,7 +24,8 @@ describe('AppComponent', () => {
         NavbarComponent,
         DashboardComponent,
         IntroductionComponent,
-        ModalComponent
+        ModalComponent,
+        TransactionComponent
       ],
       imports: [
         FormsModule,
@@ -47,6 +49,6 @@ describe('AppComponent', () => {
   it(`should have as title 'app'`, async(() => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('app');
+    expect(app.title).toEqual('Stocks-Angular');
   }));
 });

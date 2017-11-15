@@ -1,12 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { APP_BASE_HREF } from '@angular/common';
 
 import { IntroductionComponent } from './introduction.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
+import { TransactionComponent } from '../transactions/transaction/transaction.component';
 import { ModalComponent, StockTransactionInfo } from '../shared/modal.component';
 import { appRoutes } from '../routes';
+
+import { StocksService } from '../services/stocks.service';
 
 describe('IntroductionComponent', () => {
   let component: IntroductionComponent;
@@ -17,13 +21,16 @@ describe('IntroductionComponent', () => {
       declarations: [
         IntroductionComponent,
         DashboardComponent,
-        ModalComponent
+        ModalComponent,
+        TransactionComponent
       ],
       imports: [
+        HttpClientModule,
         FormsModule,
         RouterModule.forRoot(appRoutes)
       ],
       providers: [
+        StocksService,
         { provide: APP_BASE_HREF, useValue: '/' }
       ]
     })
