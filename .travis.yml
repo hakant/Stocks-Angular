@@ -1,0 +1,36 @@
+sudo: required
+dist: trusty
+language: node_js
+node_js:
+  - '7.7.4'
+
+services:
+  - docker
+
+addons:
+apt:
+  sources:
+    - google-chrome
+  packages:
+    - google-chrome-stable
+
+before_install:
+  - export CHROME_BIN=chromium-browser
+  - export DISPLAY=:99.0
+  - sh -e /etc/init.d/xvfb start
+
+before_script:
+- npm install
+
+script: 
+- npm run test -- --watch=false
+- npm run e2e
+
+after_success:
+  - if [ "$TRAVIS_BRANCH" == "master" ]; then
+    npm run build;
+    docker build -t hakant/stocks-angular -f ./.docker/nginx.dockerfile .;
+    docker tag hakant/stocks-angular hakant/stocks-angular:$(git rev-parse --short HEAD);
+    docker login -u="$DOCKER_USERNAME" -p="$DOCKER_PASSWORD";
+    docker push hakant/stocks-angular;
+    fi
