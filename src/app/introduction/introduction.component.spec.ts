@@ -6,7 +6,7 @@ import { APP_BASE_HREF } from '@angular/common';
 
 import { IntroductionComponent } from './introduction.component';
 import { DashboardComponent } from '../dashboard/dashboard.component';
-import { TransactionComponent } from '../transactions/transaction/transaction.component';
+import { TransactionComponent } from '../transactions/transaction.component';
 import { ModalComponent, StockTransactionInfo } from '../shared/modal.component';
 import { appRoutes } from '../routes';
 

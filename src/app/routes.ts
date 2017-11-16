@@ -2,7 +2,7 @@ import { Routes } from '@angular/router';
 
 import { IntroductionComponent } from './introduction/introduction.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-import { TransactionComponent } from './transactions/transaction/transaction.component';
+import { TransactionComponent } from './transactions/transaction.component';
 
 export const appRoutes: Routes = [
     { path: '', redirectTo: '/introduction', pathMatch: 'full' },

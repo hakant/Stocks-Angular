@@ -3,8 +3,8 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { TransactionComponent } from './transaction.component';
 import { Observable } from 'rxjs/Observable';
-import { TransactionInfo } from '../../models/transaction-info';
-import { StocksService } from '../../services/stocks.service';
+import { TransactionInfo } from '../models/transaction-info';
+import { StocksService } from '../services/stocks.service';
 
 class MockStockService {
   requestAllTransactions(): Observable<TransactionInfo[]> {

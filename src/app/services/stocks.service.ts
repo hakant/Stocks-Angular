@@ -84,6 +84,7 @@ interface AllTransactionsResponse {
   transactions: {
     [id: string]: {
       date: Date;
+      name: string;
       price: number;
       units: number;
     }

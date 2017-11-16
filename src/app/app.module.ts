@@ -15,7 +15,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { StocksService } from './services/stocks.service';
 import { ModalComponent } from './shared/modal.component';
-import { TransactionComponent } from './transactions/transaction/transaction.component';
+import { TransactionComponent } from './transactions/transaction.component';
 
 
 @NgModule({

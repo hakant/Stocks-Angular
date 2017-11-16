@@ -11,7 +11,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
 
 import { appRoutes } from './routes';
 
-import { TransactionComponent } from './transactions/transaction/transaction.component';
+import { TransactionComponent } from './transactions/transaction.component';
 import { IntroductionComponent } from './introduction/introduction.component';
 import { ModalComponent } from './shared/modal.component';
 import { StocksService } from './services/stocks.service';

@@ -3,6 +3,7 @@
     <thead>
       <tr>
         <th>Transaction Date</th>
+        <th>Stock Name</th>
         <th>Purchase Price</th>
         <th>Units Purchased</th>
       </tr>
@@ -10,6 +11,7 @@
     <tbody *ngIf="transactions !== null">
       <tr *ngFor="let transaction of transactions">
         <td>{{transaction.date | date:'yyyy-MM-dd &nbsp;&nbsp; HH:mm'}}</td>
+        <td>{{transaction.name}}</td>
         <td>{{transaction.price | currency:'USD':true}}</td>
         <td>{{transaction.units}}</td>
       </tr>
