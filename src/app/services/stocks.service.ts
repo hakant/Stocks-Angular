@@ -9,6 +9,8 @@ import { DashboardState } from '../models/dashboard-state';
 import { StockInfo } from '../models/stock-info';
 import { TransactionInfo } from '../models/transaction-info';
 
+import { environment } from '../../environments/environment';
+
 @Injectable()
 export class StocksService {
 
@@ -18,12 +20,12 @@ export class StocksService {
   constructor(private http: HttpClient) { }
 
   public loadStocks(numberOfStocks: number): Observable<any> {
-    const url = 'http://52.142.216.214/api/start';
+    const url = environment.apiUrl + 'start';
     return this.http.post(url, { numberOfStocks: numberOfStocks });
   }
 
   public requestAllStocks(): void {
-    const url = 'http://52.142.216.214/api/stocks';
+    const url = environment.apiUrl + 'stocks';
     this.http.get<AllStocksResponse>(url).map((response) => {
       const stockResponse = response.stocks;
       const stocks: StockInfo[] = [];
@@ -44,12 +46,12 @@ export class StocksService {
   }
 
   public buyStock(numberOfStocks: number, stockName: string): Observable<any> {
-    const url = 'http://52.142.216.214/api/stocks';
+    const url = environment.apiUrl + 'stocks';
     return this.http.post(url, { StockName: stockName, Units: numberOfStocks });
   }
 
   public requestAllTransactions(): Observable<TransactionInfo[]> {
-    const url = 'http://52.142.216.214/api/transactions';
+    const url = environment.apiUrl + 'transactions';
     return this.http.get<AllTransactionsResponse>(url).map((response) => {
       const transactionsResponse = response.transactions;
       const transactions: TransactionInfo[] = [];
