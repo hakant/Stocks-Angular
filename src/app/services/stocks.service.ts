@@ -18,12 +18,12 @@ export class StocksService {
   constructor(private http: HttpClient) { }
 
   public loadStocks(numberOfStocks: number): Observable<any> {
-    const url = 'http://localhost:5000/api/start';
+    const url = 'http://52.142.216.214/api/start';
     return this.http.post(url, { numberOfStocks: numberOfStocks });
   }
 
   public requestAllStocks(): void {
-    const url = 'http://localhost:5000/api/stocks';
+    const url = 'http://52.142.216.214/api/stocks';
     this.http.get<AllStocksResponse>(url).map((response) => {
       const stockResponse = response.stocks;
       const stocks: StockInfo[] = [];
@@ -44,12 +44,12 @@ export class StocksService {
   }
 
   public buyStock(numberOfStocks: number, stockName: string): Observable<any> {
-    const url = 'http://localhost:5000/api/stocks';
+    const url = 'http://52.142.216.214/api/stocks';
     return this.http.post(url, { StockName: stockName, Units: numberOfStocks });
   }
 
   public requestAllTransactions(): Observable<TransactionInfo[]> {
-    const url = 'http://localhost:5000/api/transactions';
+    const url = 'http://52.142.216.214/api/transactions';
     return this.http.get<AllTransactionsResponse>(url).map((response) => {
       const transactionsResponse = response.transactions;
       const transactions: TransactionInfo[] = [];
